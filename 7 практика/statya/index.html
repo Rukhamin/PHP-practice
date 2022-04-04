@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Небольшой вебсайт</title>
+</head>
+<body>
+    <br><br>
+    <div class="containet col-lg-5">
+        <h2>Добавление новости</h2>
+        <form>
+            <div class="form-group" id="form_input">
+                <label for="title">Заголовок статьи</label>
+                <input type="text" class="form-control" id="title"
+maxlength="90" placeholder="Заголовок статьи">
+                <small id="emaiHelp" class="form-text text-muted">До 90
+символов заголовок статьи</small>
+            </div>
+            <div class="form-group">
+                <label for="intro">Анонс новости</label>
+                <textarea id="intro" maxlength="255" class="form-control"
+placeholder="Анонс новости"></textarea>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                <input class="form-check-input" type="radio" name="type"
+id="type" value="article" checked>
+                Статья
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="type"
+id="type_2" value="post">
+                    Пост
+                </label>
+            </div>
+            <div id="mess" class="text-danger"></div>
+            <button type="button" onclick="check()" name="send" id="send" class="btn btn-primary">Добавить статью</button>
+        </form>
+        <br><br>
+        <div class="bg-success" id="articles"></div>
+    </div>
+
+    <script>
+        function check () {
+            var title = document.getElementById("title").value;
+            var radios = document.getElementsByName('type');
+
+            for (var i=0, length = radios.length; i < length; i++) {
+                if (radios[i].checked) {
+                    var type = radios[i].value;
+                    break;
+                }
+            }
+            var intro = document.getElementById("intro").value;
+
+            if (title == "")
+                document.getElementById("mess").innerHTML = "Введите заголовок для статьи<br><br>";
+                else if (intro == "")
+                document.getElementById("mess").innerHTML = "Введите анонс для статьи<br><br>";
+                else {
+                    alert ("Все отлично, статья опубликована");
+                    document.getElementById("articles").innerHTML = "<h2>" + title + "</h2><p>" + intro + "</p>";
+                }
+            }
+    </script>
+</body>
+</html>
